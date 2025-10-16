@@ -1,77 +1,98 @@
-# Kotlin Project
+# 🧭 Directory Text Search (JetBrains Internship Task)
 
-A simple Kotlin project set up with Gradle build system.
+An IntelliJ IDEA plugin that searches for a given string across all files in a specified directory — built with **Kotlin**, **Swing**, and **coroutines**.  
+Implements a responsive tool window that streams search results live as they’re found.
 
-## Prerequisites
+---
 
-- Java 17 or higher (JDK)
-- Gradle (included via wrapper)
+## 🚀 Features
 
-## Project Structure
+- 🔍 **Custom directory input** — type any absolute path (e.g. `/Users/zhibek/Projects/TestApp`)
+- ⚡ **Responsive UI** — runs the search in background threads using Kotlin coroutines
+- 📄 **Real-time results** — matches appear immediately as they’re discovered
+- ⏹️ **Cancelable tasks** — stop a search anytime with one click
+- 💬 **Friendly UX** — input validation, tooltips, and clear button states
 
-```
-.
-├── build.gradle.kts          # Gradle build configuration
-├── settings.gradle.kts       # Gradle settings
-├── gradle.properties         # Gradle properties
-├── gradlew                   # Gradle wrapper script
-├── gradlew.bat              # Gradle wrapper script for Windows
-├── gradle/                   # Gradle wrapper files
-├── src/
-│   ├── main/
-│   │   └── kotlin/
-│   │       └── Main.kt       # Main application file
-│   └── test/
-│       └── kotlin/
-│           └── MainTest.kt   # Test files
-└── README.md                 # This file
-```
+---
 
-## Getting Started
+## 🧠 How It Works
 
-### Running the Application
+1. The plugin adds a **Directory Search** tool window on the right-hand side of IntelliJ.
+2. Enter:
+   - A directory path (absolute)
+   - A text string to search for
+3. Press **Start Search**:
+   - A coroutine recursively scans all files in that directory.
+   - Each occurrence of the string is reported immediately to the UI.
+4. Press **Cancel Search**:
+   - The coroutine job is canceled gracefully.
+   - The UI stays responsive throughout.
 
+Results are shown in the format:
+
+## 🧩 Project Structure
+
+CODE_NAVIGATION_INTELLIJ/
+│
+├── intellij-plugin/
+│ ├── src/
+│ │ └── main/
+│ │ ├── kotlin/com/example/textsearch/
+│ │ │ ├── SearchToolWindowFactory.kt # Registers the ToolWindow
+│ │ │ └── SearchToolWindowPanel.kt # Handles UI + coroutine-based search
+│ │ └── resources/META-INF/plugin.xml # IntelliJ plugin configuration
+│ │
+│ └── build.gradle.kts # Gradle build setup for the plugin
+│
+├── gradle.properties
+├── gradlew / gradlew.bat # Gradle wrappers
+├── settings.gradle.kts
+└── README.md
+
+
+---
+
+## ⚙️ Build & Run
+
+### Prerequisites
+- IntelliJ IDEA (Community or Ultimate)
+- JDK 17+
+- Gradle (or use the wrapper)
+
+### Run the Plugin
 ```bash
-./gradlew run
-```
+cd intellij-plugin
+./gradlew runIde
 
-### Building the Project
+This opens a sandboxed IntelliJ instance with your plugin loaded.
 
-```bash
-./gradlew build
-```
+Build the Plugin
+cd intellij-plugin
+./gradlew buildPlugin
 
-### Running Tests
 
-```bash
-./gradlew test
-```
+The packaged .zip will appear under:
 
-### Cleaning the Project
+intellij-plugin/build/distributions/
 
-```bash
-./gradlew clean
-```
 
-## Features Demonstrated
+You can then install it manually in IntelliJ via
+Settings → Plugins → ⚙️ → Install Plugin from Disk...
 
-The sample code in `Main.kt` demonstrates:
+🧰 Tech Stack
+| Component | Technology               |
+| --------- | ------------------------ |
+| Language  | Kotlin                   |
+| UI        | Swing                    |
+| Async     | Kotlin Coroutines        |
+| IDE SDK   | IntelliJ Platform 2024.2 |
 
-- Basic Kotlin syntax
-- String interpolation
-- Collections and higher-order functions
-- Null safety
-- Type inference
+🪄 Implementation Notes
 
-## Dependencies
+Uses Dispatchers.Default for background searches and SwingUtilities.invokeLater for UI updates.
 
-- Kotlin Standard Library
-- JUnit 5 for testing
+Skips unreadable/binary files gracefully.
 
-## IDE Support
+Tracks line and column numbers using newline offsets.
 
-This project is compatible with:
-- IntelliJ IDEA
-- Android Studio
-- Visual Studio Code (with Kotlin extension)
-- Any IDE that supports Gradle projects
+Keeps UI reactive at all times with proper coroutine cancellation.
