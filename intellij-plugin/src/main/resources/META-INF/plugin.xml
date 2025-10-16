@@ -1,0 +1,13 @@
+<idea-plugin>
+  <id>com.example.textsearch</id>
+  <name>Directory Text Search</name>
+  <vendor email="example@example.com">Example</vendor>
+  <description>Search for a string across files in a chosen directory using a responsive ToolWindow.</description>
+
+  <depends>com.intellij.modules.platform</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <toolWindow id="Directory Search" anchor="right" factoryClass="com.example.textsearch.SearchToolWindowFactory"/>
+  </extensions>
+</idea-plugin>
+
