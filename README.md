@@ -1,4 +1,4 @@
-# 🧭 Directory Text Search (JetBrains Internship Task)
+# 🧭 Directory Text Search 
 
 An IntelliJ IDEA plugin that searches for a given string across all files in a specified directory — built with **Kotlin**, **Swing**, and **coroutines**.  
 Implements a responsive tool window that streams search results live as they’re found.
@@ -35,20 +35,19 @@ Results are shown in the format:
 CODE_NAVIGATION_INTELLIJ/
 │
 ├── intellij-plugin/
-│ ├── src/
-│ │ └── main/
-│ │ ├── kotlin/com/example/textsearch/
-│ │ │ ├── SearchToolWindowFactory.kt # Registers the ToolWindow
-│ │ │ └── SearchToolWindowPanel.kt # Handles UI + coroutine-based search
-│ │ └── resources/META-INF/plugin.xml # IntelliJ plugin configuration
-│ │
-│ └── build.gradle.kts # Gradle build setup for the plugin
+│   ├── src/
+│   │   └── main/
+│   │       ├── kotlin/com/example/textsearch/
+│   │       │   ├── SearchToolWindowFactory.kt   # Registers the ToolWindow
+│   │       │   └── SearchToolWindowPanel.kt     # Handles UI + coroutine-based search
+│   │       └── resources/META-INF/plugin.xml     # IntelliJ plugin configuration
+│   │
+│   └── build.gradle.kts                         # Gradle build setup for the plugin
 │
 ├── gradle.properties
-├── gradlew / gradlew.bat # Gradle wrappers
+├── gradlew / gradlew.bat                        # Gradle wrappers
 ├── settings.gradle.kts
 └── README.md
-
 
 ---
 
