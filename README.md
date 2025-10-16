@@ -32,6 +32,7 @@ Results are shown in the format:
 
 ## 🧩 Project Structure
 
+```
 CODE_NAVIGATION_INTELLIJ/
 │
 ├── intellij-plugin/
@@ -48,7 +49,7 @@ CODE_NAVIGATION_INTELLIJ/
 ├── gradlew / gradlew.bat                        # Gradle wrappers
 ├── settings.gradle.kts
 └── README.md
-
+```
 ---
 
 ## ⚙️ Build & Run
